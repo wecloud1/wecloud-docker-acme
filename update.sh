@@ -75,6 +75,11 @@ if [ -f docker-compose-acme.yaml ] && [ -f .env-backend-acme ] && [ -n "${BACKEN
    exit 0
 fi
 
+[ -f credentials.env ] && . credentials.env
+
+[ -n "${DOCKER_REGISTRY}" ] && [ -n "${DOCKER_USER}" ] && [ -n "${DOCKER_PASSWORD}" ] && \
+echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
+
 if [ -d wecloud-docker-acme ] && [ -f wecloud-docker-acme/docker-compose.yaml ] ; then
   cd wecloud-docker-acme
 elif [ -f docker-compose.yaml ] ; then
@@ -92,11 +97,6 @@ if ! [ -f docker-compose.yaml ] ; then
   echo "docker-compose.yaml não encontrado" > /dev/stderr
   exit 1
 fi
-
-[ -f credentials.env ] && . credentials.env
-
-[ -n "${DOCKER_REGISTRY}" ] && [ -n "${DOCKER_USER}" ] && [ -n "${DOCKER_PASSWORD}" ] && \
-echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
 echo "Baixando novas imagens"
 docker compose pull || show_error "Erro ao baixar novas imagens"
