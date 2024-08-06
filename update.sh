@@ -52,11 +52,11 @@ if [ -f docker-compose-acme.yaml ] && [ -f .env-backend-acme ] && [ -n "${BACKEN
 
    docker compose -f docker-compose-acme.yaml down
 
-   docker volume create --name ticketz-docker-acme_backend_public || exit 1
-   docker run --rm -v ${BACKEND_VOL}:/from -v ticketz-docker-acme_backend_public:/to alpine ash -c "cd /from ; cp -a . /to"
+   docker volume create --name wecloud-docker-acme_backend_public || exit 1
+   docker run --rm -v ${BACKEND_VOL}:/from -v wecloud-docker-acme_backend_public:/to alpine ash -c "cd /from ; cp -a . /to"
 
-   docker volume create --name ticketz-docker-acme_postgres_data || exit 1
-   docker run --rm -v ${POSTGRES_VOL}:/from -v ticketz-docker-acme_postgres_data:/to alpine ash -c "cd /from ; cp -a . /to"
+   docker volume create --name wecloud-docker-acme_postgres_data || exit 1
+   docker run --rm -v ${POSTGRES_VOL}:/from -v wecloud-docker-acme_postgres_data:/to alpine ash -c "cd /from ; cp -a . /to"
    
    . .env-backend-acme
    
