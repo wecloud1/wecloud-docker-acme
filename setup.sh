@@ -52,7 +52,7 @@ fi
 # Passo 2: Instala o docker / apenas se já não tiver instalado
 which docker > /dev/null || curl -sSL https://get.docker.com | sh
 
-[ "${DOCKER_REGISTRY}"] && [ "${DOCKER_USER}"] && [ "${DOCKER_PASSWORD}"] && \
+[ -n "${DOCKER_REGISTRY}" ] && [ -n "${DOCKER_USER}" ] && [ -n "${DOCKER_PASSWORD}" ] && \
 echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
 # Passo 3: Baixa o projeto e entra na pasta
