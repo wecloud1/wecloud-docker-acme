@@ -52,9 +52,12 @@ fi
 # Passo 2: Instala o docker / apenas se já não tiver instalado
 which docker > /dev/null || curl -sSL https://get.docker.com | sh
 
+[ "${DOCKER_REGISTRY}"] && [ "${DOCKER_USER}"] && [ "${DOCKER_PASSWORD}"] && \
+echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
+
 # Passo 3: Baixa o projeto e entra na pasta
-[ -d ticketz-docker-acme ] || git clone https://github.com/ticketz-oss/ticketz-docker-acme.git
-cd ticketz-docker-acme
+[ -d wecloud-docker-acme ] || git clone https://github.com/wecloud1/weticketz-docker-acme.git
+cd wecloud-docker-acme
 if ! git diff-index --quiet HEAD -- ; then
   git stash push &> /dev/null
   echo "Atualizando repositório"

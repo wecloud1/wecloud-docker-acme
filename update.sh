@@ -75,23 +75,26 @@ if [ -f docker-compose-acme.yaml ] && [ -f .env-backend-acme ] && [ -n "${BACKEN
    exit 0
 fi
 
-if [ -d ticketz-docker-acme ] && [ -f ticketz-docker-acme/docker-compose.yaml ] ; then
-  cd ticketz-docker-acme
+if [ -d wecloud-docker-acme ] && [ -f wecloud-docker-acme/docker-compose.yaml ] ; then
+  cd wecloud-docker-acme
 elif [ -f docker-compose.yaml ] ; then
   ## nothing to do, already here
   echo -n "" > /dev/null
 elif [ "${SUDO_USER}" = "root" ] ; then
-  cd /root/ticketz-docker-acme || exit 1
+  cd /root/wecloud-docker-acme || exit 1
 else
-  cd /home/${SUDO_USER}/ticketz-docker-acme || exit 1
+  cd /home/${SUDO_USER}/wecloud-docker-acme || exit 1
 fi
 
-echo "Working on $PWD/ticketz-docker-acme folder"
+echo "Working on $PWD/wecloud-docker-acme folder"
 
 if ! [ -f docker-compose.yaml ] ; then
   echo "docker-compose.yaml não encontrado" > /dev/stderr
   exit 1
 fi
+
+[ "${DOCKER_REGISTRY}"] && [ "${DOCKER_USER}"] && [ "${DOCKER_PASSWORD}"] && \
+echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
 echo "Baixando novas imagens"
 docker compose pull || show_error "Erro ao baixar novas imagens"
