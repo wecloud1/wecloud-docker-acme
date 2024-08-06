@@ -95,7 +95,7 @@ fi
 
 [ -f credentials.env ] && . credentials.env
 
-[ "${DOCKER_REGISTRY}"] && [ "${DOCKER_USER}"] && [ "${DOCKER_PASSWORD}"] && \
+[ -n "${DOCKER_REGISTRY}" ] && [ -n "${DOCKER_USER}" ] && [ -n "${DOCKER_PASSWORD}" ] && \
 echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
 echo "Baixando novas imagens"
