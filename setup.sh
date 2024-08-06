@@ -56,7 +56,7 @@ which docker > /dev/null || curl -sSL https://get.docker.com | sh
 echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
 # Passo 3: Baixa o projeto e entra na pasta
-[ -d wecloud-docker-acme ] || git clone https://github.com/wecloud1/weticketz-docker-acme.git
+[ -d wecloud-docker-acme ] || git clone https://github.com/wecloud1/wecloud-docker-acme.git
 cd wecloud-docker-acme
 if ! git diff-index --quiet HEAD -- ; then
   git stash push &> /dev/null
