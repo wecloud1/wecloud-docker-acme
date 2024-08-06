@@ -93,6 +93,8 @@ if ! [ -f docker-compose.yaml ] ; then
   exit 1
 fi
 
+[ -f credentials.env ] && . credentials.env
+
 [ "${DOCKER_REGISTRY}"] && [ "${DOCKER_USER}"] && [ "${DOCKER_PASSWORD}"] && \
 echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} --username ${DOCKER_USER} --password-stdin
 
