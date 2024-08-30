@@ -2,8 +2,8 @@
 
 # Função para mostrar a mensagem de uso
 show_usage() {
-    echo -e     "Uso: \n\n      curl -sSL https://get.ticke.tz | sudo bash -s <frontend_host> <email>\n\n"
-    echo -e "Exemplo: \n\n      curl -sSL https://get.ticke.tz | sudo bash -s ticketz.exemplo.com.br email@exemplo.com.br\n\n"
+    echo -e     "Uso: \n\n      curl -sSL https://get.wecloud1.com.br | sudo bash -s <frontend_host> <email>\n\n"
+    echo -e "Exemplo: \n\n      curl -sSL https://get.wecloud1.com.br | sudo bash -s wecloud.exemplo.com.br email@exemplo.com.br\n\n"
 }
 
 # Verifica se está rodando usando o bash
@@ -108,7 +108,7 @@ cat << EOF
 A geração dos certificados e a inicialização do serviço pode levar
 alguns minutos.
 
-Após isso você pode acessar o Ticketz pela URL
+Após isso você pode acessar o sistema pela URL
 
         https://${frontend_host}
         
